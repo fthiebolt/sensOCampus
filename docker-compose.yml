@@ -1,0 +1,46 @@
+version: '3.5'
+
+services:
+  app:
+    build: .
+    image: sensOCampus
+    # container-name implies only one instance
+    container_name: sensOCampus
+    restart: unless-stopped
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      # ONLY for development mode
+      # ==> REQUIRES YOU TO BE WITHIN /nfs/sensOCampus directory !!
+      - ${PWD}/app:/opt/app
+    network_mode: bridge
+    ports:
+      # [mar.21] TEMPORARY PORTS ONLY during dev. process
+      - "2219:22"       # sshd
+      - "7999:8000"     # Django Web app
+      - "8041:8042"     # uwsgi stats port
+    #env_file:
+      # environment section has precedence over env_file
+      #- ${PWD}/sensOCampus.env
+    environment:
+      # DEBUG is the app. debugging feature
+      # SIM is the read-only mode (i.e no write to any database) for testing purposes
+      # DJANGO_DEBUG as you guessed ;)
+      - PYTHONUNBUFFERED=1
+      - DKANGO_DEBUG
+      - DEBUG
+      - SIM
+      # MQTT
+      - MQTT_SERVER
+      - MQTT_PORT
+      - MQTT_USER=sensOCampus
+      - MQTT_PASSWD
+      # json format for MQTT_TOPICS to subscribe to
+      - MQTT_TOPICS=[ "#/device" ]
+      - MQTT_UNITID
+      # MongoDB, server is docker gateway
+      - PGSQL_USER=sensOCampus
+      - PGSQL_PASSWD
+      - PGSQL_SERVER=172.17.0.1
+      - PGSQL_PORT
+      - PGSQL_DATABASE=sensOCampus
+
