@@ -26,7 +26,8 @@ services:
       # SIM is the read-only mode (i.e no write to any database) for testing purposes
       # DJANGO_DEBUG as you guessed ;)
       - PYTHONUNBUFFERED=1
-      - DKANGO_DEBUG
+      - DJANGO_DEBUG
+      - DJANGO_SECRET_KEY
       - DEBUG
       - SIM
       # MQTT

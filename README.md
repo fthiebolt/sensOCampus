@@ -15,6 +15,7 @@ When you start this application (see below), you can pass several environment va
   - **DEBUG=1** this is our application debug feature
   - **SIM=1** this is our application simulation feature: kind of *read-only* mode (i.e no write to any database)
   - **DJANGO_DEBUG=1** this is debug to Django's internals
+  - **DJANGO_SECRET_KEY** Django's internal secret key [mandatory]
   - **MQTT_SERVER** and **MQTT_PORT**
   - **MQTT_USER** and **MQTT_PASSWD** are sensOCampus own MQTT credentials
   - **MQTT_TOPICS** json formated list of topics to subscribe to (usually #/device)
