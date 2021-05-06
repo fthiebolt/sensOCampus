@@ -1,3 +1,7 @@
+# [may.21] switch over bitbucket ! #
+This repository won't get updated anymore as we switched to bitbucket.
+______________________________________________________________
+
 # sensOCampus | end-devices management #
 ______________________________________________________________
 
